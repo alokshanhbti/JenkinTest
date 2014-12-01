@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+  <modelVersion>4.0.0</modelVersion>
+  <groupId>com.infosys</groupId>
+  <artifactId>SampleMavenIntegrationTest</artifactId>
+  <version>1.0.0</version>
+  <packaging>pom</packaging>
+
+  <name>Apache Maven</name>
+  <url>http://maven.apache.org</url>
+
+
+  <build>
+    <plugins>
+      <plugin>
+        <groupId>eviware</groupId>
+        <artifactId>maven-soapui-pro-plugin</artifactId>
+        <version>4.5.1</version>
+        <configuration>
+          <projectFile>${project.basedir}${file.separator}Automation_Framework_Sample-soapui-project.xml</projectFile>
+               <!--This is to run only mentioned testSuite..If you need to run all remove this entry-->
+               <testSuite>Maven_USZip</testSuite>
+               <outputFolder>${project.basedir}/Target/Reports</outputFolder>
+               <testFailIgnore>true</testFailIgnore>
+               <junitReport>true</junitReport>
+			    <printReport>true</printReport>  
+         <soapuiProperties>
+				  <property> 
+                     <name>soapui.scripting.library</name>
+                     <value>${project.basedir}</value>
+                  </property>
+               </soapuiProperties>
+        </configuration>
+        <executions>
+          <execution>
+            <id>run-soap-integration-test</id>
+            <phase>integration-test</phase>
+            <goals>
+              <goal>test</goal>
+            </goals>
+          </execution>
+        </executions>
+      </plugin>
+        </plugins>
+      </build>
+</project>
